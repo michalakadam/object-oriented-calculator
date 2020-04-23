@@ -71,7 +71,7 @@
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>dev.michalak.adam.Calculator</mainClass>
+                            <mainClass>dev.michalak.adam.ApplicationRunner</mainClass>
                         </manifest>
                         <manifestEntries>
                             <mode>development</mode>
