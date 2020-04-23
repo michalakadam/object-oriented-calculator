@@ -19,6 +19,7 @@ public class FlowController {
         this.getOperator();
         this.getSecondNumber();
         this.printResult();
+        this.askForNextRun();
     }
 
     private void getFirstNumber() {
@@ -65,5 +66,13 @@ public class FlowController {
 
     private void printResult() {
         System.out.println("The result is " + this.calculator.calculate());
+    }
+
+    private void askForNextRun() {
+        System.out.print("Do you want to calculate sth else? [y/n] ");
+        String input = inputProvider.next();
+        if (input.toLowerCase().equals("y")) {
+            this.run();
+        }
     }
 }
