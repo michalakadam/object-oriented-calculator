@@ -1,6 +1,8 @@
 package dev.michalak.adam.calculator;
 
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FlowController {
 
@@ -33,13 +35,21 @@ public class FlowController {
     }
 
     private void getOperator() {
-        System.out.print("Type the operator (+, -, *, /): ");
+        System.out.print("Type the operator " + this.computePrintableSetOfOperators() + ": ");
         try {
             this.calculator.setOperator(inputProvider.next().charAt(0));
         } catch (IllegalStateException exception) {
             System.err.println(exception.getMessage());
             this.getOperator();
         }
+    }
+
+    private String computePrintableSetOfOperators() {
+        return String.valueOf(
+                Arrays.stream(Operator.values())
+                        .map(Operator::getOperator)
+                        .collect(Collectors.toList())
+        );
     }
 
     private void getSecondNumber() {
