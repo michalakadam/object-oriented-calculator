@@ -14,6 +14,7 @@ public class FlowController {
 
     public void run() {
         this.getFirstNumber();
+        this.getOperator();
     }
 
     private void getFirstNumber() {
@@ -23,5 +24,15 @@ public class FlowController {
             inputProvider.next();
         }
         this.calculator.setFirstNumber(inputProvider.nextDouble());
+    }
+
+    private void getOperator() {
+        System.out.println("Type the operator (+, -, *, /): ");
+        try {
+            this.calculator.setOperator(inputProvider.next().charAt(0));
+        } catch (IllegalStateException exception) {
+            System.err.println(exception.getMessage());
+            this.getOperator();
+        }
     }
 }
