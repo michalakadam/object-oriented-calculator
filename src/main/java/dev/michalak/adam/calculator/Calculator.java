@@ -29,4 +29,8 @@ class Calculator {
         }
         this.secondNumber = secondNumber;
     }
+
+    double calculate() {
+        return this.operator.calculate(this.firstNumber, this.secondNumber);
+    }
 }

@@ -16,6 +16,7 @@ public class FlowController {
         this.getFirstNumber();
         this.getOperator();
         this.getSecondNumber();
+        this.printResult();
     }
 
     private void getFirstNumber() {
@@ -50,5 +51,9 @@ public class FlowController {
             System.err.println(exception.getMessage());
             this.getSecondNumber();
         }
+    }
+
+    private void printResult() {
+        System.out.println("The result is " + this.calculator.calculate());
     }
 }

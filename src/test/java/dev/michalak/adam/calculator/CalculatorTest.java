@@ -34,4 +34,52 @@ public class CalculatorTest {
         //then
         //throws exception
     }
+
+    @Test
+    public void calculate_addition_returnCorrectResult() {
+        //given
+        this.calculator.setFirstNumber(2);
+        this.calculator.setOperator('+');
+        this.calculator.setSecondNumber(2);
+        //when
+        double result = this.calculator.calculate();
+        //then
+        assertEquals(4, result, 0.1);
+    }
+
+    @Test
+    public void calculate_subtraction_returnCorrectResult() {
+        //given
+        this.calculator.setFirstNumber(2);
+        this.calculator.setOperator('-');
+        this.calculator.setSecondNumber(2);
+        //when
+        double result = this.calculator.calculate();
+        //then
+        assertEquals(0, result, 0.1);
+    }
+
+    @Test
+    public void calculate_multiplication_returnCorrectResult() {
+        //given
+        this.calculator.setFirstNumber(2);
+        this.calculator.setOperator('*');
+        this.calculator.setSecondNumber(2);
+        //when
+        double result = this.calculator.calculate();
+        //then
+        assertEquals(4, result, 0.1);
+    }
+
+    @Test
+    public void calculate_division_returnCorrectResult() {
+        //given
+        this.calculator.setFirstNumber(2);
+        this.calculator.setOperator('/');
+        this.calculator.setSecondNumber(2);
+        //when
+        double result = this.calculator.calculate();
+        //then
+        assertEquals(1, result, 0.1);
+    }
 }
