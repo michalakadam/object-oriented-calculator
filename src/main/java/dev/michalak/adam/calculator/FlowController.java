@@ -20,20 +20,20 @@ public class FlowController {
     }
 
     private void getFirstNumber() {
-        System.out.println("Type the number: ");
+        System.out.print("Type the number: ");
         this.allowOnlyDoubleValues();
         this.calculator.setFirstNumber(inputProvider.nextDouble());
     }
 
     private void allowOnlyDoubleValues() {
         while (!inputProvider.hasNextDouble()) {
-            System.out.println("Wrong value. Type the number: ");
+            System.out.print("Wrong value. Type the number: ");
             inputProvider.next();
         }
     }
 
     private void getOperator() {
-        System.out.println("Type the operator (+, -, *, /): ");
+        System.out.print("Type the operator (+, -, *, /): ");
         try {
             this.calculator.setOperator(inputProvider.next().charAt(0));
         } catch (IllegalStateException exception) {
@@ -43,7 +43,7 @@ public class FlowController {
     }
 
     private void getSecondNumber() {
-        System.out.println("Type the number: ");
+        System.out.print("Type the number: ");
         this.allowOnlyDoubleValues();
         try {
             this.calculator.setSecondNumber(inputProvider.nextDouble());
