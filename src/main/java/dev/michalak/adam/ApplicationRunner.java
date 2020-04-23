@@ -1,5 +1,7 @@
 package dev.michalak.adam;
 
+import dev.michalak.adam.calculator.FlowController;
+
 import java.util.Scanner;
 
 /**
@@ -11,8 +13,8 @@ public class ApplicationRunner {
 
     public static void main(String[] args) {
         Scanner numberScanner = new Scanner(System.in);
-        Calculator calculator = new Calculator(numberScanner);
+        FlowController flowController = new FlowController(numberScanner);
 
-        calculator.calculate();
+        flowController.run();
     }
 }
