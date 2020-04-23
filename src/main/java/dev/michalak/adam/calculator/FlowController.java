@@ -15,15 +15,20 @@ public class FlowController {
     public void run() {
         this.getFirstNumber();
         this.getOperator();
+        this.getSecondNumber();
     }
 
     private void getFirstNumber() {
         System.out.println("Type the number: ");
+        this.allowOnlyDoubleValues();
+        this.calculator.setFirstNumber(inputProvider.nextDouble());
+    }
+
+    private void allowOnlyDoubleValues() {
         while (!inputProvider.hasNextDouble()) {
             System.out.println("Wrong value. Type the number: ");
             inputProvider.next();
         }
-        this.calculator.setFirstNumber(inputProvider.nextDouble());
     }
 
     private void getOperator() {
@@ -33,6 +38,17 @@ public class FlowController {
         } catch (IllegalStateException exception) {
             System.err.println(exception.getMessage());
             this.getOperator();
+        }
+    }
+
+    private void getSecondNumber() {
+        System.out.println("Type the number: ");
+        this.allowOnlyDoubleValues();
+        try {
+            this.calculator.setSecondNumber(inputProvider.nextDouble());
+        } catch (IllegalStateException exception) {
+            System.err.println(exception.getMessage());
+            this.getSecondNumber();
         }
     }
 }

@@ -23,4 +23,15 @@ public class CalculatorTest {
         //then
         //throws exception
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void setSecondNumber_divisionWithZero_ThrowException() {
+        //given
+        this.calculator.setOperator('/');
+        double providedNumber = 0;
+        //when
+        this.calculator.setSecondNumber(providedNumber);
+        //then
+        //throws exception
+    }
 }

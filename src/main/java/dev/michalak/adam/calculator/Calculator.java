@@ -4,6 +4,7 @@ class Calculator {
 
     private double firstNumber;
     private Operator operator;
+    private double secondNumber;
 
     void setFirstNumber(double firstNumber) {
         this.firstNumber = firstNumber;
@@ -20,5 +21,12 @@ class Calculator {
             }
         }
         throw new IllegalStateException("Operator you provided cannot be proceeded.");
+    }
+
+    void setSecondNumber(double secondNumber) {
+        if (this.operator == Operator.DIVISION && secondNumber == 0) {
+            throw new IllegalStateException("Divider cannot be equal to 0!");
+        }
+        this.secondNumber = secondNumber;
     }
 }
