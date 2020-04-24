@@ -1,5 +1,8 @@
 package dev.michalak.adam.calculator;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 enum Operator implements OperatorInterface {
     ADDITION('+') {
         @Override
@@ -34,5 +37,13 @@ enum Operator implements OperatorInterface {
 
     char getOperator() {
         return operator;
+    }
+
+    static String getOperatorsString() {
+        return String.valueOf(
+                Arrays.stream(values())
+                        .map(Operator::getOperator)
+                        .collect(Collectors.toList())
+        );
     }
 }
