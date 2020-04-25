@@ -1,6 +1,6 @@
 package dev.michalak.adam.calculator;
 
-public interface OperatorInterface {
+public interface Calculatable {
 
     double calculate(double firstNumber, double secondNumber);
 }
