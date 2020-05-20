@@ -4,53 +4,54 @@ import java.util.Scanner;
 
 public class FlowController {
 
-    private final Scanner inputProvider;
+    private final InputProvider inputProvider;
     private Calculator calculator;
+    private boolean startNextRun;
 
-    public FlowController(Scanner inputProvider) {
+    public FlowController(InputProvider inputProvider) {
         this.inputProvider = inputProvider;
         this.calculator = new Calculator();
+        this.startNextRun = true;
     }
 
     public void run() {
-        this.getFirstNumber();
-        this.getOperator();
-        this.getSecondNumber();
-        this.printResult();
-        this.askForNextRun();
-    }
-
-    private void getFirstNumber() {
-        System.out.print("Type the number: ");
-        this.allowOnlyDoubleValues();
-        this.calculator.setFirstNumber(inputProvider.nextDouble());
-    }
-
-    private void allowOnlyDoubleValues() {
-        while (!inputProvider.hasNextDouble()) {
-            System.out.print("Wrong value. Type the number: ");
-            inputProvider.next();
+        while (startNextRun) {
+            this.collectFirstNumberFromUser();
+            this.collectOperatorFromUser();
+            this.collectSecondNumberFromUser();
+            this.printResult();
+            this.askForNextRun();
         }
     }
 
-    private void getOperator() {
+    private void collectFirstNumberFromUser() {
+        System.out.print("Type the number: ");
+        try {
+            this.calculator.setFirstNumber(inputProvider.nextDouble());
+        } catch (IllegalArgumentException exception) {
+            System.out.print(exception.getMessage());
+            this.collectFirstNumberFromUser();
+        }
+    }
+
+
+    private void collectOperatorFromUser() {
         System.out.print("Type the operator " + Operator.getOperatorsString() + ": ");
         try {
             this.calculator.setOperator(inputProvider.next().charAt(0));
         } catch (IllegalStateException exception) {
-            System.err.println(exception.getMessage());
-            this.getOperator();
+            System.out.println(exception.getMessage());
+            this.collectOperatorFromUser();
         }
     }
 
-    private void getSecondNumber() {
+    private void collectSecondNumberFromUser() {
         System.out.print("Type the number: ");
-        this.allowOnlyDoubleValues();
         try {
             this.calculator.setSecondNumber(inputProvider.nextDouble());
-        } catch (IllegalStateException exception) {
-            System.err.println(exception.getMessage());
-            this.getSecondNumber();
+        } catch (IllegalStateException | IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            this.collectSecondNumberFromUser();
         }
     }
 
@@ -59,10 +60,14 @@ public class FlowController {
     }
 
     private void askForNextRun() {
+        this.startNextRun = false;
         System.out.print("Do you want to calculate sth else? [y/n] ");
         String input = inputProvider.next();
         if (input.toLowerCase().equals("y")) {
-            this.run();
+            this.startNextRun = true;
+        } else if (!input.toLowerCase().equals("n")) {
+            System.out.print("Please answer with \'y\' or \'n\'. ");
+            this.askForNextRun();
         }
     }
 }

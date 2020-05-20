@@ -3,7 +3,7 @@ package dev.michalak.adam.calculator;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-enum Operator implements Calculatable {
+enum Operator implements Calculable {
     ADDITION('+') {
         @Override
         public double calculate(double firstNumber, double secondNumber) {
